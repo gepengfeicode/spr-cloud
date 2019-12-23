@@ -1,0 +1,10 @@
+package com.cn.microservice.security.repository;
+
+import com.cn.microservice.security.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserReponstory extends JpaRepository<User, Integer> {
+
+}

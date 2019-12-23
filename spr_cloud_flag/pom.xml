@@ -16,7 +16,8 @@
 		<module>microservice-zuul</module>
 		<module>microservice-consumer</module>
 		<module>microservice-consumer-feigin</module>
-	</modules>
+        <module>microservice-security</module>
+    </modules>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
