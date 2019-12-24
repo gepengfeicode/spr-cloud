@@ -17,6 +17,7 @@
 		<module>microservice-consumer</module>
 		<module>microservice-consumer-feigin</module>
         <module>microservice-security</module>
+        <module>microservice-hystrix</module>
     </modules>
 	<dependencyManagement>
 		<dependencies>
