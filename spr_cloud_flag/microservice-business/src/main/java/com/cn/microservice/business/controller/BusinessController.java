@@ -4,13 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.eureka.CloudEurekaClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.DiscoveryClient;
@@ -26,9 +20,9 @@ public class BusinessController {
 		System.out.println("============================================");
 		return "SUCCESS  -01";
 	}
-	
-	@PostMapping(value="getParam")
-//	@RequestMapping(value="getParam",method=RequestMethod.POST)
+
+	@RequestMapping(value="getParam",method=RequestMethod.POST)
+//	@PostMapping(value="getParam")
 	public String getParam(@RequestBody String userName){
 		System.out.println("传入的用户名为:" + userName);
 		return "Hello " + userName;
