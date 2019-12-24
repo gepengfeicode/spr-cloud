@@ -15,7 +15,8 @@ public class HystrixController {
     @Autowired
     private RestTemplate restTemplate;
     @GetMapping("/h")
-//    @HystrixCommand(fallbackMethod="getParamFallBackMethod")
+    /*执行hystrix时调用的方法名称 调用方法的入参与返回值必须一致*/
+    @HystrixCommand(fallbackMethod="getParamFallBackMethod")
     public String getParam(@RequestParam String name){
         return restTemplate.postForEntity("http://business/getParam",null,String.class,name).getBody();
     }
