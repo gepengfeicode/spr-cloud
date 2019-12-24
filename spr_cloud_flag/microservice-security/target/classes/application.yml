@@ -1,5 +1,6 @@
 server:
-  port: 8091
+  port: 8888
+#  port: ${random.int[10000,19999]}
 spring:
   application:
     name: security
@@ -13,3 +14,13 @@ spring:
     database: mysql
     hibernate:
       ddl-auto: update
+##Security登录是需要注册
+security:
+  user:
+    name: admin
+    password: admin
+#是否生效 默认true生效 需要弹出输入密码帐号的弹框
+#  basic:
+logging:
+  level.org.springframework.security.core: debug
+#    enabled: false
