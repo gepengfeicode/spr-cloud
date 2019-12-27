@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient
 /*Hystrix开启断路器*/
 @EnableCircuitBreaker
 public class HystrixApp {

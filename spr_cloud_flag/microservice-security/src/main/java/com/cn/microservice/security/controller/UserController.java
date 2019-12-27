@@ -2,6 +2,7 @@ package com.cn.microservice.security.controller;
 
 import com.cn.microservice.security.domain.User;
 import com.cn.microservice.security.repository.UserReponstory;
+import com.cn.microservice.security.utils.IPUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 //@RestController
@@ -48,4 +50,11 @@ public class UserController {
         return "用户更新权限";
     }
 
+    @GetMapping(value = "getUserIp")
+    @ResponseBody
+    @PreAuthorize(value = "hasRole('ROLE_permission_getIp')")
+    public String getUserIp(HttpServletRequest request){
+        logger.info("用户拥有[{permission_getIp}]权限!");
+        return "用户拥有获取IP权限,Ip地址为:" + IPUtils.getAccessRealIp(request) + "================" + IPUtils.getIpAddr(request);
+    }
 }

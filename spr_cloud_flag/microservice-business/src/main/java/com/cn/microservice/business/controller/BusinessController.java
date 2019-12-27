@@ -11,7 +11,8 @@ import com.netflix.discovery.DiscoveryClient;
 
 @RestController
 public class BusinessController {
-	@GetMapping(value = "resultSuccess")
+	/*@GetMapping(value = "resultSuccess")*/
+	@RequestMapping(value = "resultSuccess")
 	public String testHttp(){
 //		List<InstanceInfo> infos =  client.getInstancesById("business");
 //		for (InstanceInfo instanceInfo : infos) {
@@ -21,10 +22,10 @@ public class BusinessController {
 		return "SUCCESS  -01";
 	}
 
-	@RequestMapping(value="getParam",method=RequestMethod.POST)
+	@RequestMapping(value="getParam"/*,method=RequestMethod.POST*/)
 //	@PostMapping(value="getParam")
-	public String getParam(@RequestBody String userName){
-		System.out.println("传入的用户名为:" + userName);
-		return "Hello " + userName;
+	public String getParam(/*@RequestParam(value = "name")*/@RequestBody String name){
+		System.out.println("传入的用户名为:" + name);
+		return "Hello " + name;
 	}
 }

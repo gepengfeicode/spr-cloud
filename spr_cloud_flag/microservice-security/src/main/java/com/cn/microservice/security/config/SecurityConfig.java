@@ -27,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecuritySuccessHandler securitySuccessHandler;
     @Autowired/*登录失败执行*/
     private SecurityFailHandler securityFailHandler;
+    @Autowired
+    private SecurityLoginOutHandler securityLoginOutHandler;
     /**
      * 权限配置
      * @param http
@@ -42,17 +44,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 //登录页面地址
-                .formLogin().usernameParameter("username").passwordParameter("password")
-                /*.loginPage("/views/login.html")*/.failureForwardUrl("/views/login_error.html")
-                .successHandler(securitySuccessHandler).failureHandler(securityFailHandler)
+                .formLogin().loginProcessingUrl("/security/login").usernameParameter("username").passwordParameter("password")
+                .loginPage("/views/login.html").failureForwardUrl("/views/login_error.html")
+                .successHandler(securitySuccessHandler)
+                .failureHandler(securityFailHandler)
                 //登录成功跳转页面
                 .defaultSuccessUrl("/home").permitAll()
                 /*.defaultSuccessUrl("/views/home.html").permitAll()*/
                 //退出登录所有权限都可以
-                .and().logout().permitAll();
+                .and().logout()
+                .logoutUrl("/logout_")
+                .logoutSuccessUrl("/views/login_out.html")
+                //退出后的处理
+                .logoutSuccessHandler(securityLoginOutHandler)
+                .permitAll();
         //关csrf
         http.csrf().disable();
-
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -71,12 +78,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService).passwordEncoder(new PasswordEncoder() {
             @Override
             public String encode(CharSequence charSequence) {
-                System.out.println("======" + charSequence);
+                logger.info("charSequence Info：[{}]",charSequence.toString());
                 return charSequence.toString();
             }
             @Override
             public boolean matches(CharSequence charSequence, String s) {
-                System.out.println("========" + charSequence.toString() + "=============" + s);
+                logger.info("用户输入密码:[{}]，数据库存储的密码:[{}]",charSequence.toString(),s);
                 return s.equals(charSequence.toString());
             }
         });

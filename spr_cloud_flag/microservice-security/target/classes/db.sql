@@ -31,11 +31,12 @@ create table sys_permission(
                                id integer primary key auto_increment,
                                permissionName varchar(50)
 );
-/*插入权限数据*/
+/*插入权限数据  注意 value  值 必须是ROLE_****开头的才可以*/
 insert into sys_permission(permissionName) values ('ROLE_permission_add');
 insert into sys_permission(permissionName) values ('ROLE_permission_query');
 insert into sys_permission(permissionName) values ('ROLE_permission_del');
 insert into sys_permission(permissionName) values ('ROLE_permission_edit');
+insert into sys_permission(permissionName) values ('ROLE_permission_getIp');
 
 /*创建角色与权限关联表*/
 create table sys_role_permission(

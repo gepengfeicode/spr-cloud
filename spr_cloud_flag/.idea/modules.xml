@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/microservice-consumer/microservice-consumer.iml" filepath="$PROJECT_DIR$/microservice-consumer/microservice-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-consumer-feigin/microservice-consumer-feigin.iml" filepath="$PROJECT_DIR$/microservice-consumer-feigin/microservice-consumer-feigin.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-eureka/microservice-eureka.iml" filepath="$PROJECT_DIR$/microservice-eureka/microservice-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-hystrix/microservice-hystrix.iml" filepath="$PROJECT_DIR$/microservice-hystrix/microservice-hystrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-security/microservice-security.iml" filepath="$PROJECT_DIR$/microservice-security/microservice-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-zuul/microservice-zuul.iml" filepath="$PROJECT_DIR$/microservice-zuul/microservice-zuul.iml" />
       <module fileurl="file://$PROJECT_DIR$/spr_cloud_flag.iml" filepath="$PROJECT_DIR$/spr_cloud_flag.iml" />

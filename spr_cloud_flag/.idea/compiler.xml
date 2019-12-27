@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="microservice-consumer" />
         <module name="microservice-business" />
-        <module name="microservice-consumer-feigin" />
-        <module name="microservice-eureka" />
         <module name="microservice-zuul" />
+        <module name="microservice-consumer-feigin" />
+        <module name="microservice-consumer" />
+        <module name="microservice-hystrix" />
+        <module name="microservice-eureka" />
         <module name="microservice-security" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="microservice-consumer" target="1.6" />
       <module name="microservice-consumer-feigin" target="1.6" />
       <module name="microservice-eureka" target="1.6" />
+      <module name="microservice-hystrix" target="1.6" />
       <module name="microservice-security" target="1.6" />
       <module name="microservice-zuul" target="1.6" />
       <module name="spr_cloud_flag" target="1.6" />
