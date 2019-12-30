@@ -83,3 +83,23 @@ rememberMe() 如果用户是通过Remember-me功能认证的，就允许访问
 
 <https://blog.csdn.net/yuanlaijike/article/details/80249235>
 
+教程1链接
+https://blog.csdn.net/yuanlaijike/article/details/80249235
+教程2链接
+https://blog.csdn.net/yuanlaijike/article/details/80249869
+教程3链接
+https://blog.csdn.net/yuanlaijike/article/details/80250389
+教程4链接
+https://blog.csdn.net/yuanlaijike/article/details/80253922
+教程5链接
+https://blog.csdn.net/yuanlaijike/article/details/80327880
+教程6链接
+https://blog.csdn.net/yuanlaijike/article/details/84638745
+教程7链接
+https://blog.csdn.net/yuanlaijike/article/details/84703690
+教程8链接
+https://blog.csdn.net/yuanlaijike/article/details/86164160
+教程9链接
+https://blog.csdn.net/yuanlaijike/article/details/95104553
+教程10链接
+https://blog.csdn.net/yuanlaijike/article/details/101565313

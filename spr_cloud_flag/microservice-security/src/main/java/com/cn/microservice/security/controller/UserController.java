@@ -39,7 +39,7 @@ public class UserController {
     @ResponseBody
     @PreAuthorize(value = "hasRole('ROLE_permission_del')")
     public String delUsers(){
-        logger.info("用户拥有[{permission_del}]权限!");
+        logger.info("用户拥有[{permission_del}]权限!BCryptPasswordEncoder");
         return "用户删除权限";
     }
     @GetMapping(value = "editUsers")

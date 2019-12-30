@@ -4,12 +4,12 @@ use sprsecurity;
 /*--创建用户表*/
 create table sys_user(
                          id integer primary key auto_increment,
-                         name varchar(50),
-                         password varchar(50)
+                         name varchar(500),
+                         password varchar(500)
 );
 insert into sys_user  (name,password) values('admin','admin');
 insert into sys_user  (name,password) values('user','user');
-
+insert into sys_user  (name,password) values('root','$2a$10$FEfsokY8tKz/L5UHKdz2VeaalzTr3J8fV91aHVHNVYpq2U5Hol3NW');
 /*创建角色表*/
 create table sys_role(
                          id integer primary key auto_increment,
@@ -25,7 +25,7 @@ create table sys_user_role(
 );
 insert into sys_user_role(uid,rid) values('1','1');
 insert into sys_user_role(uid,rid) values('2','2');
-
+insert into sys_user_role(uid,rid) values('3','1');
 /*创建权限表*/
 create table sys_permission(
                                id integer primary key auto_increment,
@@ -50,3 +50,13 @@ insert into sys_role_permission(rid, pid) values('1','2');
 insert into sys_role_permission(rid, pid) values('1','3');
 insert into sys_role_permission(rid, pid) values('1','4');
 insert into sys_role_permission(rid, pid) values('2','2');
+
+
+/*单点登录新增表*/
+CREATE TABLE persistent_logins (
+                                     `username` varchar(64) NOT NULL,
+                                     `series` varchar(64) NOT NULL,
+                                     `token` varchar(64) NOT NULL,
+                                     `last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                     PRIMARY KEY (`series`)
+);

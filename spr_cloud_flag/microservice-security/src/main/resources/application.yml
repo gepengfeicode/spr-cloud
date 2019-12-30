@@ -24,3 +24,11 @@ security:
 logging:
   level.org.springframework.security.core: debug
 #    enabled: false
+
+
+#Druid数据源配置
+druid:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/sprsecurity?characterEncoding=utf8&useSSL=true&serverTimezone=UTC&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
