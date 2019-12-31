@@ -1,6 +1,7 @@
 package com.cn.microservice.security.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.cn.microservice.security.filters.ValidateCodeFilter;
 import com.cn.microservice.security.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +16,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.session.SimpleRedirectInvalidSessionStrategy;
 
 //配置类
 @Configuration
@@ -46,14 +49,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         logger.info("初始化权限与规则");
         http.authorizeRequests()
                 //设置无需权限就可以访问的
-                /*.antMatchers("/getUsers").permitAll()*/
+                .antMatchers("/getVerifyCode","/login_session_timer","expireUrl").permitAll()
                 //以下路径登录后访问
                 .anyRequest().authenticated()
                 .and()
                 //登录页面地址
                 .formLogin()
                 //自定义from表单提交地址 提交那个地址才可进入Security内部的登录接口
-                .loginProcessingUrl("/security/login")
+                .loginProcessingUrl("/login")
                 //指定表单获取的用户名
                 .usernameParameter("username")
                 //指定表单获取的密码
@@ -61,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //登录链接
                 .loginPage("/views/login.html")
                 //登录成功进入的Handler
-                .successHandler(securitySuccessHandler)
+//                .successHandler(securitySuccessHandler)
                 //登录失败地址
 //                .failureForwardUrl("/views/login_error.html")
                 .failureUrl("/views/login_error.html")
@@ -89,9 +92,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //有效期 单位秒
                 .tokenValiditySeconds(3 * 60)
                 //登录时的规则类
-                .userDetailsService(userService);
+                .userDetailsService(userService)
+                .and()
+                //Session管理
+                .sessionManagement()
+                //Session超时后的处理
+//                .invalidSessionStrategy(new SecuritySessionManageInvalidSessionStrategy());
+//                .invalidSessionStrategy(new SimpleRedirectInvalidSessionStrategy("/login_session_timer"))
+                .invalidSessionUrl("/login_session_timer")
+                //一个用户最多能有几个session登录。
+                .maximumSessions(1)
+                //是否保留已经登录的用户；为true，新用户无法登录；为 false，旧用户被踢出
+                .maxSessionsPreventsLogin(true);
+//                .expiredSessionStrategy(null);
+                //用户被挤下后的操作
+
         //关csrf
         http.csrf().disable();
+        //注入过滤器
+        //修改 WebSecurityConfig 的 configure 方法，添加一个 addFilterBefore() ，具有两个参数，作用是在参数二之前执行参数一设置的过滤器。
+        //Spring Security 对于用户名/密码登录方式是通过 UsernamePasswordAuthenticationFilter 处理的，我们在它之前执行验证码过滤器即可。
+        http.addFilterBefore(new ValidateCodeFilter(), UsernamePasswordAuthenticationFilter.class);
     }
     @Override
     public void configure(WebSecurity web) throws Exception {

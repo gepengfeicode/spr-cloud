@@ -42,7 +42,7 @@ public class UserService implements UserDetailsService {
         logger.info("数据库中获取到的用户信息为:[{}]",userInfo.toString());
         //根据用户Id获取角色名称(默认一个用户拥有多个角色)
         List<Role> role = roleReponstory.findRoleByUserName(userInfo.getId());
-        if(null == role || role.size() <= 0){
+        if(null == role || role.size () <= 0){
             throw new RuntimeException("用户名:[{"+username+"}],未从数据库中排查到数据!");
         }
         //权限集合
