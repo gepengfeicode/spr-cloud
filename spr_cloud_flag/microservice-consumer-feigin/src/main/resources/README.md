@@ -78,3 +78,65 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=3000
 hystrix.command.default.execution.timeout.enabled=false 
 ```
 
+### 5.Feign集成Hystrix
+
+1.插入依赖
+
+```xml
+ <!--断路器依赖-->
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-hystrix</artifactId>
+      </dependency>	
+```
+
+2.执行feign的fallback类 此类需集成feign的接口进行实现
+
+ 
+
+```java
+@FeignClient(name="business",configuration=My_FeignConfig.class,fallback = FallBackBusinessDao.class)
+
+@Component
+public class FallBackBusinessDao implements BusinessDao {
+    @Override
+    public String testHttp() {
+        return "fall back testHttpMethod()";
+    }
+
+    @Override
+    public String getParam(String userName) {
+        return null;
+    }
+}
+```
+
+3.fallbackFactory
+
+不可同时使用fallback与fallbackFactory
+
+```java
+@FeignClient(name="business",configuration=My_FeignConfig.class/*,fallback = FallBackBusinessDao.class*/,fallbackFactory =FallBackFactoryBusinessDao.class )
+/*==========================================分割线===============================*/
+
+@Component
+public class FallBackFactoryBusinessDao implements FallbackFactory<BusinessDao> {
+    static Logger logger = LoggerFactory.getLogger(FallBackFactoryBusinessDao.class);
+    @Override
+    public BusinessDao create( Throwable throwable) {
+        logger.info("进入Create Method方法　ｔｈｒｏｗａｂｌｅ :[{}]",throwable.getMessage());
+        return new BusinessDao() {
+            @Override
+            public String testHttp() {
+                return "返回信息为：" ;
+            }
+
+            @Override
+            public String getParam(String userName) {
+                return null;
+            }
+        };
+    }
+}
+```
+

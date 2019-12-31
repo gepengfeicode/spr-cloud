@@ -15,7 +15,8 @@ import com.cn.microservice.feign.dao.BusinessDao;
 public class FeignController {
 	@Autowired
 	private BusinessDao businessDao;
-	@GetMapping(value = "feign-getBusinessInfo")
+//	@GetMapping(value = "feign-getBusinessInfo")
+	@RequestMapping(value = "feign-getBusinessInfo",method = RequestMethod.GET)
 	public String feignGetBusinessInfo(){
 		return businessDao.testHttp();
 	}

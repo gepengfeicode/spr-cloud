@@ -1,6 +1,7 @@
 package com.cn.microservice.hystrix.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,9 @@ public class HystrixController {
     private RestTemplate restTemplate;
     @GetMapping("/h")
     /*执行hystrix时调用的方法名称 调用方法的入参与返回值必须一致*/
-    @HystrixCommand(fallbackMethod="getParamFallBackMethod")
+    @HystrixCommand(fallbackMethod="getParamFallBackMethod",commandProperties = {
+            @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
+    })
     public String getParam(@RequestParam String name){
         return restTemplate.postForEntity("http://business/resultSuccess",null,String.class/*,name*/).getBody();
     }
