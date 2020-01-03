@@ -26,5 +26,10 @@
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-actuator</artifactId>
       </dependency>
+      <!--集成hystrix仪表盘-->
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+      </dependency>
   </dependencies>
 </project>

@@ -12,11 +12,13 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @SpringBootApplication
 @EntityScan(basePackages = "com.cn.microservice.security.domain")
 @EnableJpaRepositories(basePackages = "com.cn.microservice.security.repository")
 @ServletComponentScan(basePackages = "com.cn.microservice.security")
+@EnableRedisHttpSession//开启RedisSession共享
 public class SecurityApp {
     private static Logger logger = LoggerFactory.getLogger(SecurityApp.class);
     public static void main(String[] args) {

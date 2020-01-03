@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
     private PermissionReponstory permissionReponstory;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.info("输入的用户名为:[{}]",username);
+        logger.info("输入的用户名为:[{}],线程编号:[{}]",username,Thread.currentThread().getId());
         //从数据库中排查
         com.cn.microservice.security.domain.User userInfo = userReponstory.findByName(username);
         if(null == userInfo){

@@ -10,7 +10,7 @@ public class WebMvnConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/","/home");
-        registry.addRedirectViewController("/indx","/home");
+        registry.addRedirectViewController("/index","/home");
     }
 
 }

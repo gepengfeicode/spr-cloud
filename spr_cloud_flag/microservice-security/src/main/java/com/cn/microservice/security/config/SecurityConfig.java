@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -21,6 +22,9 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.SimpleRedirectInvalidSessionStrategy;
 
+/**
+ * 回家测试Session共享Redis
+ */
 //配置类
 @Configuration
 //开启 Security 服务
@@ -39,6 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityLoginOutHandler securityLoginOutHandler;
     @Autowired/*为实现自动登录而新增*/
     private SecurityPersistentTokenRepository securityPersistentTokenRepository;
+    @Autowired
+    private SessionRegistryImpl sessionRegistryImpl;
     /**
      * 权限配置
      * @param http
@@ -65,13 +71,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/views/login.html")
                 //登录成功进入的Handler
 //                .successHandler(securitySuccessHandler)
+                //登录成功跳转页面
+                .defaultSuccessUrl("/home").permitAll()
                 //登录失败地址
 //                .failureForwardUrl("/views/login_error.html")
                 .failureUrl("/views/login_error.html")
                 //登录失败进入的Handler 设置此值后 failureForwardUrl 将失效
 //                .failureHandler(securityFailHandler)
-                //登录成功跳转页面
-                .defaultSuccessUrl("/home").permitAll()
                 /*.defaultSuccessUrl("/views/home.html").permitAll()*/
                 //退出登录所有权限都可以
                 .and()
@@ -79,22 +85,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 //点击退出调用哪个链接可执行Security内置的退出接口
                 .logoutUrl("/logout_")
+                //执行推出时删除指定Cookie内容
+                .deleteCookies("JSESSIONID")
                 //退出成功后跳转的页面
                 .logoutSuccessUrl("/views/login.html")
                 //退出后的处理  重写Handler后 logoutUrl 与 logoutSuccessUrl 将失效
 //                .logoutSuccessHandler(securityLoginOutHandler)
                 .permitAll()
                 .and()
-//                开启自动登录
+               // 开启自动登录 开启自动登录后会导致Session失效 Begin
                 .rememberMe()
                 //实现自动登录 根据token查询数据库的方式
                 .tokenRepository(securityPersistentTokenRepository.persistentTokenRepository())
-                //有效期 单位秒
+                //有效期 单位秒successfulAuthentication
                 .tokenValiditySeconds(3 * 60)
                 //登录时的规则类
                 .userDetailsService(userService)
                 .and()
-                //Session管理
+//                自动登录 End
+//                Session管理
                 .sessionManagement()
                 //Session超时后的处理
 //                .invalidSessionStrategy(new SecuritySessionManageInvalidSessionStrategy());
@@ -103,7 +112,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //一个用户最多能有几个session登录。
                 .maximumSessions(1)
                 //是否保留已经登录的用户；为true，新用户无法登录；为 false，旧用户被踢出
-                .maxSessionsPreventsLogin(true);
+                .maxSessionsPreventsLogin(false)
+                .expiredUrl("/")
+                .sessionRegistry(sessionRegistryImpl);
+                //应该调用此方法进行用户不允许登录时候的处理
 //                .expiredSessionStrategy(null);
                 //用户被挤下后的操作
 
