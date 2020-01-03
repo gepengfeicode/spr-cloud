@@ -1,0 +1,44 @@
+server:
+  port: 8889
+  session:
+    # session 过期时间，单位：秒
+    timeout: 180
+#  port: ${random.int[10000,19999]}
+spring:
+  application:
+    name: security-sms
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sprsecurity?characterEncoding=utf8&useSSL=true&serverTimezone=UTC&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
+      #基于Redis完成Session共享
+  redis:
+    host: 127.0.0.1
+    password:
+      #Session共享的获取方式
+  session:
+    store-type: redis
+#Security登录是需要注册
+security:
+  user:
+    name: admin
+    password: admin
+#是否生效 默认true生效 需要弹出输入密码帐号的弹框
+#  basic:
+logging:
+  level.org.springframework.security.core: debug
+#    enabled: false
+
+
+#Druid数据源配置
+druid:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/sprsecurity?characterEncoding=utf8&useSSL=true&serverTimezone=UTC&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false

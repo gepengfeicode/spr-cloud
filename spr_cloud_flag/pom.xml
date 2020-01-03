@@ -6,6 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.3.RELEASE</version>
+		<!--<version>1.5.6.RELEASE</version>-->
 	</parent>
 	<groupId>com.cn.flag</groupId>
 	<artifactId>spr_cloud_flag</artifactId>
@@ -18,7 +19,8 @@
 		<module>microservice-consumer</module>
 		<module>microservice-consumer-feigin</module>
         <module>microservice-security</module>
-        <module>microservice-hystrix</module>
+        <module>microservice-security-sms</module>
+		<module>microservice-hystrix</module>
     </modules>
 	<dependencyManagement>
 		<dependencies>

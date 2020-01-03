@@ -8,11 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-business" />
         <module name="microservice-zuul" />
-        <module name="microservice-consumer-feigin" />
-        <module name="microservice-consumer" />
         <module name="microservice-hystrix" />
-        <module name="microservice-eureka" />
         <module name="microservice-security" />
+        <module name="microservice-consumer" />
+        <module name="microservice-security-sms" />
+        <module name="microservice-eureka" />
+        <module name="microservice-consumer-feigin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +23,7 @@
       <module name="microservice-eureka" target="1.6" />
       <module name="microservice-hystrix" target="1.6" />
       <module name="microservice-security" target="1.6" />
+      <module name="microservice-security-sms" target="1.6" />
       <module name="microservice-zuul" target="1.6" />
       <module name="spr_cloud_flag" target="1.6" />
     </bytecodeTargetLevel>
