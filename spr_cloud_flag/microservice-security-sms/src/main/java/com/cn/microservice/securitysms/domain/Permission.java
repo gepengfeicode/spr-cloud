@@ -1,4 +1,4 @@
-package com.cn.microservice.securitysms.domain;
+package com.cn.microservice.security.domain;
 
 import lombok.*;
 

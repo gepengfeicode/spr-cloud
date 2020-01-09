@@ -1,4 +1,4 @@
-package com.cn.microservice.securitysms.smsconfig;
+package com.cn.microservice.security.smsconfig;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

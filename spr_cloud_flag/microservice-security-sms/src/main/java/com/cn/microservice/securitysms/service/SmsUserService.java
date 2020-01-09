@@ -1,4 +1,4 @@
-package com.cn.microservice.securitysms.service;
+package com.cn.microservice.security.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

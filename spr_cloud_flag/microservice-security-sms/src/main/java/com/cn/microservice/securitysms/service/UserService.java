@@ -1,9 +1,9 @@
-package com.cn.microservice.securitysms.service;
+package com.cn.microservice.security.service;
 
-import com.cn.microservice.securitysms.domain.Role;
-import com.cn.microservice.securitysms.repository.PermissionReponstory;
-import com.cn.microservice.securitysms.repository.RoleReponstory;
-import com.cn.microservice.securitysms.repository.UserReponstory;
+import com.cn.microservice.security.domain.Role;
+import com.cn.microservice.security.repository.PermissionReponstory;
+import com.cn.microservice.security.repository.RoleReponstory;
+import com.cn.microservice.security.repository.UserReponstory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.info("输入的用户名为:[{}],线程编号:[{}]",username,Thread.currentThread().getId());
         //从数据库中排查
-        com.cn.microservice.securitysms.domain.User userInfo = userReponstory.findByName(username);
+        com.cn.microservice.security.domain.User userInfo = userReponstory.findByName(username);
         if(null == userInfo){
             throw new NullPointerException("用户名:[{"+username+"}],未从数据库中排查到数据!");
         }

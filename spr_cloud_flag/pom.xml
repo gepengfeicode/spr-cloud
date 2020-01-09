@@ -19,8 +19,9 @@
 		<module>microservice-consumer</module>
 		<module>microservice-consumer-feigin</module>
         <module>microservice-security</module>
-        <module>microservice-security-sms</module>
+        <!--<module>microservice-security-sms</module>-->
 		<module>microservice-hystrix</module>
+        <module>microservice-fileup</module>
     </modules>
 	<dependencyManagement>
 		<dependencies>

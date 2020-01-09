@@ -1,4 +1,4 @@
-package com.cn.microservice.securitysms.smsconfig;
+package com.cn.microservice.security.smsconfig;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,8 +1,8 @@
-package com.cn.microservice.securitysms.controller;
+package com.cn.microservice.security.controller;
 
-import com.cn.microservice.securitysms.domain.User;
-import com.cn.microservice.securitysms.repository.UserReponstory;
-import com.cn.microservice.securitysms.utils.IPUtils;
+import com.cn.microservice.security.domain.User;
+import com.cn.microservice.security.repository.UserReponstory;
+import com.cn.microservice.security.utils.IPUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -25,3 +25,13 @@
 
 ​	localhost:zuul_port/spring.application.name/接口名
 
+
+
+
+
+4.常用接口
+
+```java
+http://localhost:18807/routes    获取Zuul代理的地址
+```
+

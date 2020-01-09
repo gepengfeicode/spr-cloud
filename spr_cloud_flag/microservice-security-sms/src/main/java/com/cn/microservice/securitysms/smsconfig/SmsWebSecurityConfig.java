@@ -1,4 +1,4 @@
-package com.cn.microservice.securitysms.smsconfig;
+package com.cn.microservice.security.smsconfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

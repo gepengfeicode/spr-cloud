@@ -1,7 +1,7 @@
-package com.cn.microservice.securitysms.smsconfig;
+package com.cn.microservice.security.smsconfig;
 
-import com.cn.microservice.securitysms.service.SmsUserService;
-import com.cn.microservice.securitysms.service.UserService;
+import com.cn.microservice.security.service.SmsUserService;
+import com.cn.microservice.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;

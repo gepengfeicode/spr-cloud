@@ -1,6 +1,6 @@
-package com.cn.microservice.securitysms;
+package com.cn.microservice.security;
 
-import com.cn.microservice.securitysms.servlet.ValidateCodeServlet;
+import com.cn.microservice.security.servlet.ValidateCodeServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
