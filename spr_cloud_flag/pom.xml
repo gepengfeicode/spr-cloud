@@ -22,6 +22,7 @@
         <!--<module>microservice-security-sms</module>-->
 		<module>microservice-hystrix</module>
         <module>microservice-fileup</module>
+        <module>microservice-config-client</module>
     </modules>
 	<dependencyManagement>
 		<dependencies>

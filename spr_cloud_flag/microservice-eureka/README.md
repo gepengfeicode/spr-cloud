@@ -85,6 +85,22 @@ eureka.instance.perferIpAddress=true
 
 127.0.0.01 peer1 peer2
 
+两个注册中心互相注册测,业务模块将服务注册到两个服务注册中心。
+
+需要把以下两个属性进行删除
+
+```xml
+#设置为false代表不注册自己服务
+eureka.client.register-with-eureka=false
+#由于注册中心的只测就是维护服务示例,他并不需要去检索服务,所以设置为false
+eureka.client.fetch-registry=false
+
+#注册时将服务注册到两个注册中心实现高可用
+eureka.client.serviceUrl.defaultZone=http://root:root@127.0.0.1:8092/eureka/,http://root:root@127.0.0.1:8093/eureka/
+```
+
+
+
 ```properties
 ---
 spring:
